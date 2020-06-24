@@ -1,1 +1,2 @@
+plan_name: 'fontconfig'
 command_relative_path: 'bin/fc-list'
