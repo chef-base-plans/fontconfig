@@ -1,12 +1,12 @@
 pkg_name=fontconfig
-pkg_version=2.11.95
+pkg_version=2.13.93
 pkg_origin=core
 pkg_license=('fontconfig')
 pkg_description="Fontconfig is a library for configuring and customizing font access."
 pkg_upstream_url=https://www.freedesktop.org/wiki/Software/fontconfig/
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
 pkg_source="https://www.freedesktop.org/software/fontconfig/release/${pkg_name}-${pkg_version}.tar.bz2"
-pkg_shasum=7b165eee7aa22dcc1557db56f58d905b6a14b32f9701c79427452474375b4c89
+pkg_shasum=1316959c13d70d14443c68510129432a1e32f5e01a3526dec11b7834978809cb
 pkg_deps=(
   core/bzip2
   core/glibc
