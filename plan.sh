@@ -29,6 +29,8 @@ pkg_build_deps=(
   core/autoconf
   core/file
   core/patch
+  core/gettext
+  core/gperf
 )
 pkg_include_dirs=(include)
 pkg_lib_dirs=(lib)
@@ -58,7 +60,7 @@ do_prepare() {
   sed -e "s#/usr/bin/file#${_file_path}#g" -i configure
   sed -e "s#/usr/bin/uname#${_uname_path}#g" -i configure
 
-  patch -p1 < "${PLAN_CONTEXT}/glibc-2.25+.patch"
+  #patch -p1 < "${PLAN_CONTEXT}/glibc-2.25+.patch"
 }
 
 do_build() {
@@ -66,6 +68,8 @@ do_build() {
     --sysconfdir="${pkg_prefix}/etc" \
     --prefix="${pkg_prefix}" \
     --disable-static \
+    --disable-dependency-tracking \
+    --disable-docs \
     --mandir="${pkg_prefix}/man"
   make
 }
