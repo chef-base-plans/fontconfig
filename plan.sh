@@ -1,12 +1,12 @@
 pkg_name=fontconfig
-pkg_version=2.11.95
+pkg_version=2.13.93
 pkg_origin=core
 pkg_license=('fontconfig')
 pkg_description="Fontconfig is a library for configuring and customizing font access."
 pkg_upstream_url=https://www.freedesktop.org/wiki/Software/fontconfig/
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
-pkg_source="https://www.freedesktop.org/software/fontconfig/release/${pkg_name}-${pkg_version}.tar.bz2"
-pkg_shasum=7b165eee7aa22dcc1557db56f58d905b6a14b32f9701c79427452474375b4c89
+pkg_source="https://www.freedesktop.org/software/fontconfig/release/${pkg_name}-${pkg_version}.tar.gz"
+pkg_shasum=0f302a18ee52dde0793fe38b266bf269dfe6e0c0ae140e30d72c6cca5dc08db5
 pkg_deps=(
   core/bzip2
   core/glibc
@@ -29,6 +29,8 @@ pkg_build_deps=(
   core/autoconf
   core/file
   core/patch
+  core/gettext
+  core/gperf
 )
 pkg_include_dirs=(include)
 pkg_lib_dirs=(lib)
@@ -58,7 +60,6 @@ do_prepare() {
   sed -e "s#/usr/bin/file#${_file_path}#g" -i configure
   sed -e "s#/usr/bin/uname#${_uname_path}#g" -i configure
 
-  patch -p1 < "${PLAN_CONTEXT}/glibc-2.25+.patch"
 }
 
 do_build() {
@@ -66,6 +67,7 @@ do_build() {
     --sysconfdir="${pkg_prefix}/etc" \
     --prefix="${pkg_prefix}" \
     --disable-static \
+    --disable-docs \
     --mandir="${pkg_prefix}/man"
   make
 }
